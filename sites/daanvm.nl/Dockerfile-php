@@ -1,7 +1,0 @@
-FROM php:8.0-fpm
-
-# Use the default production configuration
-RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
-
-COPY public/ /usr/src/daanvm.nl
-WORKDIR /usr/src/daanvm.nl

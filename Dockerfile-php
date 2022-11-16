@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install -y libmagickwand-dev ghostscript --no-inst
     && docker-php-ext-enable imagick \
     && sed -i '/disable ghostscript format types/,+6d' /etc/ImageMagick-6/policy.xml
 
-COPY app/ /usr/src/christelmusic.nl
+COPY app /usr/src/christelmusic.nl
 
 RUN mkdir -m 0777 /usr/src/christelmusic.nl/cache
 

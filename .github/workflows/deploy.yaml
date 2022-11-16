@@ -17,34 +17,12 @@ jobs:
           username: daanvm
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Build and push daanvm.nl-nginx
-        id: docker_build_daanvm_nl_nginx
-        uses: docker/build-push-action@v2
-        with:
-          context: ./sites/daanvm.nl
-          file: ./sites/daanvm.nl/Dockerfile-nginx
-          push: true
-          tags: daanvm/daanvm.nl-nginx:latest
-      - name: Image digest
-        run: echo ${{ steps.docker_build_daanvm_nl_nginx.outputs.digest }}
-
-      - name: Build and push daanvm.nl-php
-        id: docker_build_daanvm_nl_php
-        uses: docker/build-push-action@v2
-        with:
-          context: ./sites/daanvm.nl
-          file: ./sites/daanvm.nl/Dockerfile-php
-          push: true
-          tags: daanvm/daanvm.nl-php:latest
-      - name: Image digest
-        run: echo ${{ steps.docker_build_daanvm_nl_php.outputs.digest }}
-
       - name: Build and push christelmusic.nl-nginx
         id: docker_build_christelmusic_nl_nginx
         uses: docker/build-push-action@v2
         with:
-          context: ./sites/christelmusic.nl
-          file: ./sites/christelmusic.nl/Dockerfile-nginx
+          context: .
+          file: ./Dockerfile-nginx
           push: true
           tags: daanvm/christelmusic.nl-nginx:latest
       - name: Image digest
@@ -54,8 +32,8 @@ jobs:
         id: docker_build_christelmusic_nl_php
         uses: docker/build-push-action@v2
         with:
-          context: ./sites/christelmusic.nl
-          file: ./sites/christelmusic.nl/Dockerfile-php
+          context: .
+          file: ./Dockerfile-php
           push: true
           tags: daanvm/christelmusic.nl-php:latest
       - name: Image digest
@@ -79,13 +57,10 @@ jobs:
 
       - name: Create kubernetes resources
         run: |
-          kubectl apply -f ./config/kubernetes/daanvm.nl.yaml
-          kubectl apply -f ./config/kubernetes/christelmusic.nl.yaml
+          kubectl apply -f ./christelmusic.nl.yaml
 
       - name: Deploy new latest version of docker image
         run: |
           kubectl create secret generic ifttt --save-config --dry-run=client --from-literal='key=${{ secrets.IFTTT_KEY }}' -o yaml | kubectl apply -f -
-          kubectl rollout restart deployment daanvm-nl
-          kubectl rollout restart deployment daanvm-nl-php
           kubectl rollout restart deployment christelmusic-nl
           kubectl rollout restart deployment christelmusic-nl-php

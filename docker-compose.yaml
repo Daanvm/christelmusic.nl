@@ -3,7 +3,7 @@ version: '3'
 services:
   christelmusic-nl-nginx:
     build:
-      context: .
+      context: sites/christelmusic.nl
       dockerfile: Dockerfile-nginx
     restart: unless-stopped
     volumes:
@@ -13,7 +13,7 @@ services:
 
   christelmusic-nl-php:
     build:
-      context: .
+      context: sites/christelmusic.nl
       dockerfile: Dockerfile-php
     restart: unless-stopped
     volumes:
