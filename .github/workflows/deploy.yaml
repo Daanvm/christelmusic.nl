@@ -11,6 +11,9 @@ jobs:
       - name: Checkout master
         uses: actions/checkout@v3
 
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
       - name: Login to DockerHub
         uses: docker/login-action@v2
         with:
@@ -25,8 +28,8 @@ jobs:
           file: ./Dockerfile-nginx
           push: true
           tags: daanvm/christelmusic.nl-nginx:latest
-      - name: Image digest
-        run: echo ${{ steps.docker_build_christelmusic_nl_nginx.outputs.digest }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 
       - name: Build and push christelmusic.nl-php
         id: docker_build_christelmusic_nl_php
@@ -36,8 +39,8 @@ jobs:
           file: ./Dockerfile-php
           push: true
           tags: daanvm/christelmusic.nl-php:latest
-      - name: Image digest
-        run: echo ${{ steps.docker_build_christelmusic_nl_php.outputs.digest }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 
   deploy-kubernetes:
     name: Create Kubernetes resources
