@@ -3,7 +3,7 @@ WORKDIR /app/
 COPY app/composer.* ./
 RUN composer install --ignore-platform-req ext-imagick
 
-FROM php:8.1-fpm
+FROM php:8.2-fpm-alpine
 
 # Use the default production configuration
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
