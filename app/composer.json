@@ -1,21 +1,26 @@
 {
-  "name": "daanvm-nl/christelmusic-nl",
-  "homepage": "https://christelmusic.nl",
-  "config": {
-    "platform": {
-      "php": "8.1"
+    "name": "daanvm-nl/christelmusic-nl",
+    "homepage": "https://christelmusic.nl",
+    "config": {
+        "platform": {
+            "php": "8.1"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "ChristelMusic\\": "src"
+        },
+        "files": [
+            "parable_init.php"
+        ]
+    },
+    "require": {
+        "php": "^8.1",
+        "ext-curl": "*",
+        "spatie/pdf-to-image": "^2.1",
+        "webmozart/assert": "^1.10",
+        "moneyphp/money": "^3.3",
+        "parable-php/framework": "^2.0",
+        "parable-php/routing": "^1.0"
     }
-  },
-  "autoload": {
-    "psr-4": {
-      "ChristelMusic\\": "src"
-    }
-  },
-  "require": {
-    "php": "^8.1",
-    "ext-curl": "*",
-    "spatie/pdf-to-image": "^2.1",
-    "webmozart/assert": "^1.10",
-    "moneyphp/money": "^3.3"
-  }
 }

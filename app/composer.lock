@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "08151ac50a79e5b7969b0cba1112bffc",
+    "content-hash": "e6e8a838f4bc54fa4d25021b09bfa4ad",
     "packages": [
         {
             "name": "moneyphp/money",
@@ -91,6 +91,554 @@
                 "source": "https://github.com/moneyphp/money/tree/v3.3.3"
             },
             "time": "2022-09-21T07:43:36+00:00"
+        },
+        {
+            "name": "parable-php/console",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/parable-php/console.git",
+                "reference": "8cc0c68b554da723f1ebea1fb1fb9ddafa1d8634"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/parable-php/console/zipball/8cc0c68b554da723f1ebea1fb1fb9ddafa1d8634",
+                "reference": "8cc0c68b554da723f1ebea1fb1fb9ddafa1d8634",
+                "shasum": ""
+            },
+            "require": {
+                "parable-php/di": "^1.0",
+                "php": ">=8.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^8.0",
+                "vimeo/psalm": "^4.6"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Parable\\Console\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Robin de Graaf",
+                    "email": "hello@devvoh.com",
+                    "homepage": "https://devvoh.com"
+                }
+            ],
+            "description": "Parable Console is a terminal application building library",
+            "homepage": "https://github.com/parable-php/console",
+            "keywords": [
+                "console",
+                "framework",
+                "library",
+                "parable",
+                "terminal"
+            ],
+            "support": {
+                "issues": "https://github.com/parable-php/console/issues",
+                "source": "https://github.com/parable-php/console/tree/1.0.1"
+            },
+            "time": "2021-09-30T19:12:46+00:00"
+        },
+        {
+            "name": "parable-php/di",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/parable-php/di.git",
+                "reference": "b6ce8b0f4850580c364ea98238a583dcae17448e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/parable-php/di/zipball/b6ce8b0f4850580c364ea98238a583dcae17448e",
+                "reference": "b6ce8b0f4850580c364ea98238a583dcae17448e",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.0",
+                "vimeo/psalm": "^4.6"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Parable\\Di\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Robin de Graaf",
+                    "email": "hello@devvoh.com",
+                    "homepage": "https://devvoh.com"
+                }
+            ],
+            "description": "Parable DI is a micro Dependency Injection Container",
+            "homepage": "https://github.com/parable-php/di",
+            "keywords": [
+                "container",
+                "dependency-injection",
+                "di",
+                "library",
+                "micro",
+                "parable"
+            ],
+            "support": {
+                "issues": "https://github.com/parable-php/di/issues",
+                "source": "https://github.com/parable-php/di/tree/1.0.0"
+            },
+            "time": "2021-03-12T08:19:41+00:00"
+        },
+        {
+            "name": "parable-php/event",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/parable-php/event.git",
+                "reference": "4a5f312b6dc222bdfdd83619910c262c84bf7ff8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/parable-php/event/zipball/4a5f312b6dc222bdfdd83619910c262c84bf7ff8",
+                "reference": "4a5f312b6dc222bdfdd83619910c262c84bf7ff8",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^8.0",
+                "vimeo/psalm": "^4.6"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Parable\\Event\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Robin de Graaf",
+                    "email": "hello@devvoh.com",
+                    "homepage": "https://devvoh.com"
+                }
+            ],
+            "description": "Parable Events is a simple event system",
+            "homepage": "https://github.com/parable-php/event",
+            "keywords": [
+                "event",
+                "library",
+                "listener",
+                "observer",
+                "parable"
+            ],
+            "support": {
+                "issues": "https://github.com/parable-php/event/issues",
+                "source": "https://github.com/parable-php/event/tree/1.0.0"
+            },
+            "time": "2021-03-12T08:47:08+00:00"
+        },
+        {
+            "name": "parable-php/framework",
+            "version": "2.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/parable-php/framework.git",
+                "reference": "bdf7a261e209a4d6ea8cf506f11ad8495aa37052"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/parable-php/framework/zipball/bdf7a261e209a4d6ea8cf506f11ad8495aa37052",
+                "reference": "bdf7a261e209a4d6ea8cf506f11ad8495aa37052",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "ext-pcntl": "*",
+                "ext-pdo": "*",
+                "parable-php/console": "^1.0",
+                "parable-php/di": "^1.0",
+                "parable-php/event": "^1.0",
+                "parable-php/getset": "^1.0",
+                "parable-php/http": "^1.0",
+                "parable-php/orm": "^1.0",
+                "parable-php/routing": "^1.0",
+                "php": ">=8.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.0",
+                "vimeo/psalm": "^4.6"
+            },
+            "bin": [
+                "src/parable"
+            ],
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/initialize.php"
+                ],
+                "psr-4": {
+                    "Parable\\Framework\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Robin de Graaf",
+                    "email": "hello@devvoh.com",
+                    "homepage": "https://devvoh.com"
+                }
+            ],
+            "description": "Parable PHP Framework is a minimalist framework",
+            "homepage": "https://github.com/parable-php/parable",
+            "keywords": [
+                "framework",
+                "micro",
+                "minimal",
+                "parable",
+                "prototyping"
+            ],
+            "support": {
+                "issues": "https://github.com/parable-php/framework/issues",
+                "source": "https://github.com/parable-php/framework/tree/2.0.5"
+            },
+            "time": "2021-10-08T12:18:26+00:00"
+        },
+        {
+            "name": "parable-php/getset",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/parable-php/getset.git",
+                "reference": "c84cda078092e3b41a4d776c4ce29b7971c3a9c2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/parable-php/getset/zipball/c84cda078092e3b41a4d776c4ce29b7971c3a9c2",
+                "reference": "c84cda078092e3b41a4d776c4ce29b7971c3a9c2",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": ">=8.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^8.0",
+                "vimeo/psalm": "^4.6"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Parable\\GetSet\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Robin de Graaf",
+                    "email": "hello@devvoh.com",
+                    "homepage": "https://devvoh.com"
+                }
+            ],
+            "description": "Parable GetSet helps with easily building value sets",
+            "homepage": "https://github.com/parable-php/getset",
+            "keywords": [
+                "library",
+                "micro",
+                "parable",
+                "values"
+            ],
+            "support": {
+                "issues": "https://github.com/parable-php/getset/issues",
+                "source": "https://github.com/parable-php/getset/tree/1.0.0"
+            },
+            "time": "2021-03-12T08:33:14+00:00"
+        },
+        {
+            "name": "parable-php/http",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/parable-php/http.git",
+                "reference": "dceda5ca50fd740c63e29c1e7b4b88eb4e3848cc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/parable-php/http/zipball/dceda5ca50fd740c63e29c1e7b4b88eb4e3848cc",
+                "reference": "dceda5ca50fd740c63e29c1e7b4b88eb4e3848cc",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "php": ">=8.0",
+                "ralouphie/getallheaders": "^3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.0",
+                "vimeo/psalm": "^4.6"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Parable\\Http\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Robin de Graaf",
+                    "email": "hello@devvoh.com",
+                    "homepage": "https://devvoh.com"
+                }
+            ],
+            "description": "Parable HTTP is a straight-forward Request/Response library",
+            "homepage": "https://github.com/parable-php/http",
+            "keywords": [
+                "http",
+                "library",
+                "micro",
+                "parable",
+                "request",
+                "response"
+            ],
+            "support": {
+                "issues": "https://github.com/parable-php/http/issues",
+                "source": "https://github.com/parable-php/http/tree/1.0.0"
+            },
+            "time": "2021-03-12T08:49:15+00:00"
+        },
+        {
+            "name": "parable-php/orm",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/parable-php/orm.git",
+                "reference": "4a010169d5181f78246a0103cbbcac6757bd7d3e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/parable-php/orm/zipball/4a010169d5181f78246a0103cbbcac6757bd7d3e",
+                "reference": "4a010169d5181f78246a0103cbbcac6757bd7d3e",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "ext-pdo": "*",
+                "parable-php/di": "^1.0",
+                "parable-php/query": "^1.0",
+                "php": ">=8.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^8.0",
+                "vimeo/psalm": "^4.6"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Parable\\Orm\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Robin de Graaf",
+                    "email": "hello@devvoh.com",
+                    "homepage": "https://devvoh.com"
+                }
+            ],
+            "description": "Parable ORM is a small but complete repository-pattern ORM implementation",
+            "homepage": "https://github.com/parable-php/orm",
+            "keywords": [
+                "database",
+                "library",
+                "micro",
+                "orm",
+                "parable"
+            ],
+            "support": {
+                "issues": "https://github.com/parable-php/orm/issues",
+                "source": "https://github.com/parable-php/orm/tree/1.0.0"
+            },
+            "time": "2021-03-12T09:05:35+00:00"
+        },
+        {
+            "name": "parable-php/query",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/parable-php/query.git",
+                "reference": "50fa8b7ff5fd525a7336f2de57acdbc689cf3fc6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/parable-php/query/zipball/50fa8b7ff5fd525a7336f2de57acdbc689cf3fc6",
+                "reference": "50fa8b7ff5fd525a7336f2de57acdbc689cf3fc6",
+                "shasum": ""
+            },
+            "require": {
+                "ext-pdo": "*",
+                "php": ">=8.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^8.0",
+                "vimeo/psalm": "^4.6"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Parable\\Query\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Robin de Graaf",
+                    "email": "hello@devvoh.com",
+                    "homepage": "https://devvoh.com"
+                }
+            ],
+            "description": "Parable Query is a small but efficient and complete query builder for MySQL",
+            "homepage": "https://github.com/parable-php/query",
+            "keywords": [
+                "database",
+                "library",
+                "micro",
+                "parable",
+                "query"
+            ],
+            "support": {
+                "issues": "https://github.com/parable-php/query/issues",
+                "source": "https://github.com/parable-php/query/tree/1.0.1"
+            },
+            "time": "2021-03-12T14:34:43+00:00"
+        },
+        {
+            "name": "parable-php/routing",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/parable-php/routing.git",
+                "reference": "91baf0aff27ecb0511e9923da638dbcf2df84a1b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/parable-php/routing/zipball/91baf0aff27ecb0511e9923da638dbcf2df84a1b",
+                "reference": "91baf0aff27ecb0511e9923da638dbcf2df84a1b",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^8.0",
+                "vimeo/psalm": "^4.6"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Parable\\Routing\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Robin de Graaf",
+                    "email": "hello@devvoh.com",
+                    "homepage": "https://devvoh.com"
+                }
+            ],
+            "description": "Parable Routing is a light-weight and fast url Routing library",
+            "homepage": "https://github.com/parable-php/routing",
+            "keywords": [
+                "library",
+                "micro",
+                "route",
+                "router",
+                "routing",
+                "url"
+            ],
+            "support": {
+                "issues": "https://github.com/parable-php/routing/issues",
+                "source": "https://github.com/parable-php/routing/tree/1.0.0"
+            },
+            "time": "2021-03-12T08:50:56+00:00"
+        },
+        {
+            "name": "ralouphie/getallheaders",
+            "version": "3.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ralouphie/getallheaders.git",
+                "reference": "120b605dfeb996808c31b6477290a714d356e822"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ralouphie/getallheaders/zipball/120b605dfeb996808c31b6477290a714d356e822",
+                "reference": "120b605dfeb996808c31b6477290a714d356e822",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6"
+            },
+            "require-dev": {
+                "php-coveralls/php-coveralls": "^2.1",
+                "phpunit/phpunit": "^5 || ^6.5"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/getallheaders.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ralph Khattar",
+                    "email": "ralph.khattar@gmail.com"
+                }
+            ],
+            "description": "A polyfill for getallheaders.",
+            "support": {
+                "issues": "https://github.com/ralouphie/getallheaders/issues",
+                "source": "https://github.com/ralouphie/getallheaders/tree/develop"
+            },
+            "time": "2019-03-08T08:55:37+00:00"
         },
         {
             "name": "spatie/pdf-to-image",
@@ -218,7 +766,8 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": "^8.1"
+        "php": "^8.1",
+        "ext-curl": "*"
     },
     "platform-dev": [],
     "platform-overrides": {

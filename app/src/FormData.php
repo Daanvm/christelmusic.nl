@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace ChristelMusic;
 
@@ -8,18 +8,18 @@ class FormData
      * Indicates if the form was already submitted, to differentiate which class
      * to return. When unsubmitted, empty is not invalid.
      */
-    private $is_submitted;
+    private bool $is_submitted;
 
-    public $name;
-    public $email;
-    public $address;
-    public $postalCode;
-    public $city;
-    public $country;
-    public $quantityWatershed;
-    public $quantityLandslide;
+    public ?string $name;
+    public ?string $email;
+    public ?string $address;
+    public ?string $postalCode;
+    public ?string $city;
+    public string $country;
+    public int $quantityWatershed;
+    public int $quantityLandslide;
 
-    private $errorMessages = [];
+    private array $errorMessages = [];
 
     public static function fromPost(array $postData): self
     {

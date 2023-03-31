@@ -72,5 +72,10 @@ spec:
                 secretKeyRef:
                   name: ifttt
                   key: key
+            - name: MAIL_ORDERS_TO
+              valueFrom:
+                secretKeyRef:
+                  name: mail-orders-to
+                  key: key
           ports:
             - containerPort: 9000

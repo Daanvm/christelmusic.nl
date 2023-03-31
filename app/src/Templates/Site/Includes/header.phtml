@@ -1,17 +1,15 @@
-<?php
-/**
- * @var ?string $pageName
- * @var ?ReleaseProject $releaseProject
- */
+<?php declare(strict_types=1);
+
+/** @var Template $this */
 
 use ChristelMusic\Releases\Landslide;
 use ChristelMusic\Releases\ReleaseProject;
+use Parable\Framework\Http\Template;
 
-require_once '../vendor/autoload.php';
+$pageName = $this->data->get('viewData.pageName');
 
-if (!isset($releaseProject)) {
-    $releaseProject = new Landslide();
-}
+/** @var ReleaseProject $headerProject */
+$headerProject = $this->data->get('viewData.releaseProject') ?? new Landslide();
 ?>
 
 <!doctype html>
@@ -20,7 +18,7 @@ if (!isset($releaseProject)) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <meta property="og:image" content="https://www.christelmusic.nl<?=$releaseProject->getOgImageUrl()?>" />
+    <meta property="og:image" content="https://www.christelmusic.nl<?=$headerProject->getOgImageUrl()?>" />
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <link href="./assets/theme.css?ver=<?=md5_file('./assets/theme.css')?>" rel="stylesheet"/>
@@ -44,7 +42,7 @@ if (!isset($releaseProject)) {
 <div class="container-lg">
     <header class="row mt-4 g-0">
         <div class="col-xs-12">
-            <a href="/"><img src="<?=$releaseProject->getHeaderImageUrl()?>" class="img-fluid"/></a>
+            <a href="/"><img src="<?=$headerProject->getHeaderImageUrl()?>" class="img-fluid"/></a>
         </div>
     </header>
 

@@ -14,6 +14,8 @@ services:
     build:
       dockerfile: Dockerfile-php
     restart: unless-stopped
+    env_file:
+      - .env.local
     volumes:
       - ./app:/usr/src/christelmusic.nl/:delegated
 

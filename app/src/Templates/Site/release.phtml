@@ -1,19 +1,18 @@
-<?php
-/**
- * @var ReleaseProject $releaseProject
- */
+<?php declare(strict_types=1);
 
-use ChristelMusic\Releases\ReleaseItemAlbum;use ChristelMusic\Releases\ReleaseProject;
+/** @var Template $this */
+
+use ChristelMusic\Releases\ReleaseItemAlbum;
+use ChristelMusic\Releases\ReleaseProject;
 use Money\Currencies\ISOCurrencies;
 use Money\Formatter\DecimalMoneyFormatter;
+use Parable\Framework\Http\Template;
 use Webmozart\Assert\Assert;
 
-require_once '../vendor/autoload.php';
-
+$releaseProject = $this->data->get('viewData.releaseProject');
 Assert::isInstanceOf($releaseProject, ReleaseProject::class);
 
-$pageName = $releaseProject->getTitle();
-require './includes/header.php';
+require __DIR__ . '/Includes/header.phtml';
 
 $currencies = new ISOCurrencies();
 $moneyFormatter = new DecimalMoneyFormatter($currencies);
@@ -152,4 +151,4 @@ if (count($sheetMusics) > 0 && $isAlreadyReleased):
 <hr />
 <?php endforeach; ?>
 
-<?php require './includes/footer.php'; ?>
+<?php require __DIR__ . '/Includes/footer.phtml'; ?>

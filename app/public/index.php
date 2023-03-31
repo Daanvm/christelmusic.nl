@@ -1,47 +1,18 @@
-<?php
+<?php declare(strict_types=1);
 
-use ChristelMusic\Releases\Landslide;
-use ChristelMusic\Releases\OnlyTheYoung;
-use ChristelMusic\Releases\ReleaseProject;
-use ChristelMusic\Releases\Watershed;
+/**
+ * This file is part of the Parable Framework package and may be overwritten
+ * upon running `parable install`. This can be needed on an upgrade that requires
+ * changes to this file.
+ *
+ * If you absolutely need to make changes here, you can copy over the changes
+ * from the Parable Framework package's index.php_template file manually instead.
+ */
 
-require_once '../vendor/autoload.php';
-require './includes/header.php';
-?>
+require '../vendor/autoload.php';
 
-<div class="row">
-    <div class="col-md-8 offset-md-2">
-        <p class="lead">Classical pianist, composer.</p>
-        <p>Christel was born in the Netherlands. At age ten, she taught herself to play the piano. In 2019 she
-            discovered her passion for composing music. Although Christel has a love for many different music genres,
-            the music she writes is mainly influenced by (neo)classical and cinematic music.</p>
-    </div>
-</div>
+use Parable\Di\Container;
+use Parable\Framework\Application;
 
-<?php
-/** @var ReleaseProject[] $releases */
-$releases = [
-    new OnlyTheYoung(),
-    new Landslide(),
-    new Watershed(),
-];
-?>
-
-<?php foreach ($releases as $release): ?>
-<div class="row mt-5">
-    <div class="col-md-12">
-        <p>
-            <a href="/<?=$release->getSlug();?>">
-                <img src="<?=$release->getProjectImageUrl()?>" alt="<?=$release->getTitle()?>" class="img-fluid border"/>
-            </a>
-        </p>
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-8 offset-md-2">
-        <?=$release->getIntroTextAsHtml()?>
-    </div>
-</div>
-<?php endforeach; ?>
-
-<?php require './includes/footer.php'; ?>
+$application = (new Container())->get(Application::class);
+$application->run();
