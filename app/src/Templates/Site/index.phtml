@@ -2,11 +2,11 @@
 
 /** @var Template $this */
 
-use ChristelMusic\Releases\Landslide;
-use ChristelMusic\Releases\OnlyTheYoung;
 use ChristelMusic\Releases\ReleaseProject;
-use ChristelMusic\Releases\Watershed;
 use Parable\Framework\Http\Template;
+
+/** @var ReleaseProject[] $releases */
+$releases = $this->data->get('viewData.releaseProjects');
 
 require __DIR__ . '/Includes/header.phtml';
 ?>
@@ -19,15 +19,6 @@ require __DIR__ . '/Includes/header.phtml';
             the music she writes is mainly influenced by (neo)classical and cinematic music.</p>
     </div>
 </div>
-
-<?php
-/** @var ReleaseProject[] $releases */
-$releases = [
-    new OnlyTheYoung(),
-    new Landslide(),
-    new Watershed(),
-];
-?>
 
 <?php foreach ($releases as $release): ?>
     <div class="row mt-5">

@@ -3,16 +3,19 @@
 namespace ChristelMusic\Controllers;
 
 use ChristelMusic\FormData;
-use ChristelMusic\Releases\Landslide;
+use ChristelMusic\ReleaseRepository;
 use ChristelMusic\Releases\ReleaseItem;
 use ChristelMusic\Releases\ReleaseItemAlbum;
 use ChristelMusic\Releases\ReleaseProject;
-use ChristelMusic\Releases\Watershed;
 use Parable\GetSet\DataCollection;
+use Webmozart\Assert\Assert;
 
 final class OrderController
 {
-    public function __construct(protected DataCollection $dataCollection) {}
+    public function __construct(
+        protected DataCollection $dataCollection,
+        protected ReleaseRepository $releaseRepository,
+    ) {}
 
     public function indexAction(ReleaseProject $releaseProject, FormData $formData = null): void
     {
@@ -23,7 +26,7 @@ final class OrderController
         $this->dataCollection->set('viewData', [
             'releaseProject' => $releaseProject,
             'pageName' => $releaseProject->getTitle(),
-            'albumReleaseItems' => $this->getAlbumReleaseItems($releaseProject),
+            'albumReleaseItems' => $this->releaseRepository->getAllAlbums($releaseProject),
             'activeAlbumReleaseItem' => $this->getAlbumReleaseItem($releaseProject),
             'formData' => $formData,
         ]);
@@ -50,25 +53,6 @@ final class OrderController
         $this->dataCollection->set('viewData', [
             'pageName' => 'Thanks',
         ]);
-    }
-
-    /**
-     * @return ReleaseItemAlbum[]
-     */
-    public function getAlbumReleaseItems(ReleaseProject $releaseProject): array
-    {
-        /** @var ReleaseItemAlbum[] $albumReleaseItems */
-        $albumReleaseItems = [
-            $this->getAlbumReleaseItem((new Watershed())),
-            $this->getAlbumReleaseItem((new Landslide()))
-        ];
-
-        // Put Landslide on top if that's the current album being ordered
-        if ($releaseProject instanceof Landslide) {
-            $albumReleaseItems = array_reverse($albumReleaseItems);
-        }
-
-        return $albumReleaseItems;
     }
 
     /**
@@ -105,6 +89,8 @@ Je websitebouwer<br />
 
         $iftttKey = getenv('IFTTT_KEY');
         $mailOrdersTo = getenv('MAIL_ORDERS_TO');
+
+        Assert::email($mailOrdersTo);
 
         $payload = [
             'value1' /* name */ => $data->name,

@@ -4,12 +4,6 @@ namespace ChristelMusic;
 
 use ChristelMusic\Controllers\MainController;
 use ChristelMusic\Controllers\OrderController;
-use ChristelMusic\Releases\Landslide;
-use ChristelMusic\Releases\OnlyTheYoung;
-use ChristelMusic\Releases\ReleaseItem;
-use ChristelMusic\Releases\ReleaseItemAlbum;
-use ChristelMusic\Releases\ReleaseProject;
-use ChristelMusic\Releases\Watershed;
 use Parable\Framework\Path;
 use Parable\Framework\Plugins\PluginInterface;
 use Parable\Routing\Router;
@@ -17,10 +11,11 @@ use Parable\Routing\Router;
 final class RouterPlugin implements PluginInterface
 {
     public function __construct(
-        protected Router $router,
-        protected Path $path,
-        protected MainController $mainController,
-        protected OrderController $orderController,
+        protected Router            $router,
+        protected Path              $path,
+        protected MainController    $mainController,
+        protected OrderController   $orderController,
+        protected ReleaseRepository $releaseFactory,
     ) {}
 
     public function run(): void
@@ -41,14 +36,7 @@ final class RouterPlugin implements PluginInterface
 
     private function addReleases(): void
     {
-        /** @var ReleaseProject[] $releaseProjects */
-        $releaseProjects = [
-            new OnlyTheYoung(),
-            new Landslide(),
-            new Watershed(),
-        ];
-
-        foreach($releaseProjects as $releaseProject) {
+        foreach($this->releaseFactory->getAllProjects() as $releaseProject) {
             $this->router->add(
                 ['GET'],
                 $releaseProject->getSlug(),
@@ -61,22 +49,8 @@ final class RouterPlugin implements PluginInterface
 
     private function addOrders(): void
     {
-        /** @var ReleaseProject[] $releaseProjects */
-        $releaseProjects = [
-            new OnlyTheYoung(),
-            new Landslide(),
-            new Watershed(),
-        ];
-
-        foreach($releaseProjects as $releaseProject) {
-            $findAlbum = static fn (ReleaseItem $releaseItem) => $releaseItem instanceof ReleaseItemAlbum;
-
-            /** @var ReleaseItemAlbum|null $releaseAlbum */
-            $releaseAlbum = array_filter($releaseProject->getReleaseItems(), $findAlbum)[0] ?? null;
-
-            if ($releaseAlbum === null) {
-                continue;
-            }
+        foreach($this->releaseFactory->getAllWithAlbum() as $releaseProject) {
+            $releaseAlbum = $this->releaseFactory->getAlbumForProject($releaseProject);
 
             $this->router->add(
                 ['GET'],

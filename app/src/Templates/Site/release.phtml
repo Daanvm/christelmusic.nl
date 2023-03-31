@@ -7,10 +7,9 @@ use ChristelMusic\Releases\ReleaseProject;
 use Money\Currencies\ISOCurrencies;
 use Money\Formatter\DecimalMoneyFormatter;
 use Parable\Framework\Http\Template;
-use Webmozart\Assert\Assert;
 
+/** @var ReleaseProject $releaseProject */
 $releaseProject = $this->data->get('viewData.releaseProject');
-Assert::isInstanceOf($releaseProject, ReleaseProject::class);
 
 require __DIR__ . '/Includes/header.phtml';
 
