@@ -25,4 +25,9 @@ services:
       target: builder
     volumes:
       - ./app:/usr/src/build/:delegated
-    command: "composer install"
+    command:
+      - /bin/sh
+      - -c
+      - |
+        composer install
+        /usr/src/build/scripts/christelmusic warmup

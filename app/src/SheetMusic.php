@@ -6,8 +6,8 @@ use Spatie\PdfToImage\Pdf;
 
 class SheetMusic
 {
-    const TEMP_DIR = '../cache/sheetmusic/';
-    const PDF_DIR = '../public/assets/sheetmusic/';
+    const TEMP_DIR = __DIR__ . '/../cache/sheetmusic/';
+    const PDF_DIR = __DIR__ . '/../public/assets/sheetmusic/';
 
     private ?Pdf $pdf = null;
 
@@ -20,7 +20,7 @@ class SheetMusic
         }
     }
 
-    private function getPdf()
+    private function getPdf(): Pdf
     {
         if ($this->pdf === null) {
             $this->pdf = new Pdf($this->getPdfPath());

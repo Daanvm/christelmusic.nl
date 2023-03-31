@@ -21,6 +21,7 @@
         "webmozart/assert": "^1.10",
         "moneyphp/money": "^3.3",
         "parable-php/framework": "^2.0",
-        "parable-php/routing": "^1.0"
+        "parable-php/routing": "^1.0",
+        "parable-php/console": "^1.0"
     }
 }

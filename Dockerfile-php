@@ -18,6 +18,6 @@ RUN composer install
 FROM base
 
 COPY app /usr/src/christelmusic.nl
-RUN mkdir -m 0777 /usr/src/christelmusic.nl/cache
 COPY --from=builder /usr/src/build/vendor /usr/src/christelmusic.nl/vendor
+RUN /usr/src/christelmusic.nl/scripts/christelmusic warmup
 WORKDIR /usr/src/christelmusic.nl
