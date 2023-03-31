@@ -16,6 +16,14 @@ final class OnlyTheYoung implements ReleaseProject
         return "Only the Young";
     }
 
+    public function getIntroTextAsHtml(): string
+    {
+        return <<<HTML
+            <p>'Only the Young' is Christel's latest release. "This is an ode to my favorite musician Brandon Flowers and his
+            song 'Only the Young'."</p>
+            HTML;
+    }
+
     public function getSlug(): string
     {
         return "onlytheyoung";

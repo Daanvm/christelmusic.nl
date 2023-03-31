@@ -17,7 +17,15 @@ require './includes/header.php';
 
 $currencies = new ISOCurrencies();
 $moneyFormatter = new DecimalMoneyFormatter($currencies);
+?>
 
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <?=$releaseProject->getIntroTextAsHtml()?>
+    </div>
+</div>
+
+<?php
 foreach($releaseProject->getReleaseItems() as $releaseItem):
     $isAlreadyReleased = $releaseItem->getReleaseDate() < new DateTimeImmutable() || isset($_GET['test']);
     $isNotReleasedYet = !$isAlreadyReleased;

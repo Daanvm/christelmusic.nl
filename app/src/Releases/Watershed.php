@@ -15,6 +15,15 @@ class Watershed implements ReleaseProject
         return "Watershed";
     }
 
+    public function getIntroTextAsHtml(): string
+    {
+        return <<<HTML
+            <p>In 2021 Christel released her first album 'Watershed'. It is a collection of solo piano songs that reflect
+            different moods. Whether it's peaceful, uplifting, energetic, dramatic or epic, it's always passionate. "I
+            get really excited when I notice that my mood changes when I play a certain piece."</p>
+            HTML;
+    }
+
     public function getSlug(): string
     {
         return "watershed";
