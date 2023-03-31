@@ -1,22 +1,23 @@
-FROM composer:2 as builder
-WORKDIR /app/
-COPY app/composer.* ./
-RUN composer install --ignore-platform-req ext-imagick
-
-FROM php:8.2-fpm-alpine
+FROM php:8.2-fpm-alpine as base
 
 # Use the default production configuration
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
-# Add imagick to create sheet music previews
-ADD https://raw.githubusercontent.com/mlocati/docker-php-extension-installer/master/install-php-extensions /usr/local/bin/
+# Install php dependencies
+ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
 RUN chmod uga+x /usr/local/bin/install-php-extensions && sync && \
-    install-php-extensions imagick
+    install-php-extensions imagick pcntl
+
+FROM base as builder
+
+COPY --from=composer /usr/bin/composer /usr/bin/composer
+COPY app/composer.* /usr/src/build/
+WORKDIR /usr/src/build
+RUN composer install
+
+FROM base
 
 COPY app /usr/src/christelmusic.nl
-
 RUN mkdir -m 0777 /usr/src/christelmusic.nl/cache
-
-COPY --from=builder /app/vendor /usr/src/christelmusic.nl/vendor
-
+COPY --from=builder /usr/src/build/vendor /usr/src/christelmusic.nl/vendor
 WORKDIR /usr/src/christelmusic.nl

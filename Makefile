@@ -1,6 +1,6 @@
 .PHONY: update-composer
 update-composer:
-	docker-compose run composer-build composer update --ignore-platform-req=ext-imagick
+	docker-compose run composer-build composer update
 
 .PHONY: make-new-jewelcase-image
 make-new-jewelcase-image:

@@ -1,5 +1,5 @@
 ---
-version: '3'
+version: '3.9'
 services:
   christelmusic-nl-nginx:
     build:
@@ -18,7 +18,9 @@ services:
       - ./app:/usr/src/christelmusic.nl/:delegated
 
   composer-build:
-    image: composer:2
+    build:
+      dockerfile: Dockerfile-php
+      target: builder
     volumes:
-      - ./app:/app/:delegated
-    command: "composer install --ignore-platform-req ext-imagick"
+      - ./app:/usr/src/build/:delegated
+    command: "composer install"
