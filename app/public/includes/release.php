@@ -41,6 +41,8 @@ foreach($releaseProject->getReleaseItems() as $releaseItem):
 
             if ($isNotReleasedYet) {
                 echo sprintf("Coming soon: %s %s", $releaseType, $releaseItem->getTitle());
+            } elseif (count($releaseItem->getStreamingInformation()) < 4) {
+                echo sprintf("%s %s is available on", $releaseType, $releaseItem->getTitle());
             } else {
                 echo sprintf("%s %s is available on all streaming platforms", $releaseType, $releaseItem->getTitle());
             }
@@ -73,17 +75,21 @@ foreach($releaseProject->getReleaseItems() as $releaseItem):
                        href="<?=$releaseItem->getStreamingInformation()->spotifyUrl?>">Listen</a>
                 </td>
             </tr>
+            <?php if ($releaseItem->getStreamingInformation()->appleMusicUrl !== null): ?>
             <tr>
                 <td><i class="fab fa-apple"></i> Apple Music</td>
                 <td><a class="btn btn-outline-secondary" target="_blank"
                        href="<?=$releaseItem->getStreamingInformation()->appleMusicUrl?>">Listen</a>
                 </td>
             </tr>
+            <?php endif; ?>
+            <?php if ($releaseItem->getStreamingInformation()->deezerUrl !== null): ?>
             <tr>
                 <td><i class="fab fa-deezer"></i> Deezer</td>
                 <td><a class="btn btn-outline-secondary" target="_blank"
                        href="<?=$releaseItem->getStreamingInformation()->deezerUrl?>">Listen</a></td>
             </tr>
+            <?php endif; ?>
             <?php if ($releaseItem->getStreamingInformation()->tidalUrl !== null): ?>
             <tr>
                 <td><img class="icon" src="/assets/icons/brand-tidal.svg"/> Tidal</td>
@@ -91,11 +97,13 @@ foreach($releaseProject->getReleaseItems() as $releaseItem):
                        href="<?=$releaseItem->getStreamingInformation()->tidalUrl?>">Listen</a></td>
             </tr>
             <?php endif; ?>
+            <?php if ($releaseItem->getStreamingInformation()->amazonUrl !== null): ?>
             <tr>
                 <td><i class="fab fa-amazon"></i> Amazon</td>
                 <td><a class="btn btn-outline-secondary" target="_blank"
                        href="<?=$releaseItem->getStreamingInformation()->amazonUrl?>">Listen</a></td>
             </tr>
+            <?php endif; ?>
         </table>
         <?php endif; ?>
     </div>
