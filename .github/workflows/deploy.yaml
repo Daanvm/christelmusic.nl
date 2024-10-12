@@ -51,6 +51,9 @@ jobs:
             cd ..
             rm -f ./build.tar.gz
           
+            echo "IFTTT_KEY=${{ secrets.IFTTT_KEY }}" > ./new-release/.env
+            echo "MAIL_ORDERS_TO=${{ secrets.MAIL_ORDERS_TO }}" >> ./new-release/.env
+          
             rm -rf ./prev-release
             mv ./public ./prev-release
             mv ./new-release ./public
