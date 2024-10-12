@@ -20,6 +20,8 @@ RUN composer install
 # Allow the creation of pdf files
 RUN sed -i '/disable ghostscript format types/,+6d' /etc/ImageMagick-6/policy.xml
 
+COPY .env.example .env
+
 # Create cache
 RUN /var/www/html/scripts/christelmusic warmup
 
