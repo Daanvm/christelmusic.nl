@@ -14,16 +14,18 @@ RUN chmod uga+x /usr/local/bin/install-php-extensions && sync && \
 
 # Install composer dependencies
 COPY --from=composer /usr/bin/composer /usr/bin/composer
-COPY app/composer.* /usr/src/build/
 WORKDIR /var/www/html
 RUN composer install
+
+# Allow the creation of pdf files
+RUN sed -i '/disable ghostscript format types/,+6d' /etc/ImageMagick-6/policy.xml
 
 # Create cache
 RUN /var/www/html/scripts/christelmusic warmup
 
 FROM builder as zipper
 
-RUN cd /var/www/html/ && tar --exclude-vcs-ignores -czvf /build.tar.gz ./*
+RUN cd /var/www/ && tar -czvf /build.tar.gz html
 
 FROM base
 
