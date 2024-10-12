@@ -36,7 +36,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: .
-          file: ./Dockerfile-php
+          file: ./Dockerfile
           push: true
           tags: daanvm/christelmusic.nl-php:latest
           cache-from: type=gha

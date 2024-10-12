@@ -8,25 +8,16 @@ jobs:
   build:
     name: Build website zip
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./app
     steps:
       - name: Checkout master
         uses: actions/checkout@v3
 
-      - name: Install dependencies
-        uses: php-actions/composer@v6
-        with:
-          php_version: "8.1"
-          php_extensions: pcntl imagick
-          version: latest
-          working_dir: app
-
-      # TODO: rename from warmup to build, it's no longer a warmup now.
-      - name: Run warmup script
-        run: ${GITHUB_WORKSPACE}/app/scripts/christelmusic warmup
-        shell: bash
+      - name: Build .tar.gz file
+        run: |
+          docker build --tag local-img/zipper --target zipper .
+          docker create --name zipper local-img/zipper
+          docker cp zipper:/build.tar.gz ./build.tar.gz
+          docker rm -f zipper
 
       # TODO: remove debug
       - name: Debug print all files
