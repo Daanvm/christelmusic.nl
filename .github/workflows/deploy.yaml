@@ -9,7 +9,7 @@ jobs:
     name: Build website .tar.gz
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Build .tar.gz file
         run: |
@@ -42,5 +42,17 @@ jobs:
         env:
           SSHPASS: ${{ secrets.STRATO_SSH_PASSWORD }}
         run: |
-          sshpass -e scp -oStrictHostKeyChecking=no ./build.tar.gz ${{ secrets.STRATO_SSH_USERNAME }}@ssh.strato.com/new-release.tar.gz
-          sshpass -e ssh -oStrictHostKeyChecking=no ${{ secrets.STRATO_SSH_USERNAME }}@ssh.strato.com ls -lah
+          sshpass -e scp -oStrictHostKeyChecking=no ./build.tar.gz ${{ secrets.STRATO_SSH_USERNAME }}@ssh.strato.com:build.tar.gz
+          sshpass -e ssh -oStrictHostKeyChecking=no ${{ secrets.STRATO_SSH_USERNAME }}@ssh.strato.com << EOF
+            rm -rf ./new-release
+            mkdir new-release
+            cd new-release
+            tar -xzvf ../build.tar.gz
+            cd ..
+            rm -f ./build.tar.gz
+          
+            rm -rf ./prev-release
+            mv ./public ./prev-release
+            mv ./new-release ./public
+            rm -rf ./new-release
+          EOF

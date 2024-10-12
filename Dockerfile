@@ -25,7 +25,7 @@ RUN /var/www/html/scripts/christelmusic warmup
 
 FROM builder as zipper
 
-RUN cd /var/www/ && tar -czvf /build.tar.gz html
+RUN cd /var/www/html && tar -czvf /build.tar.gz .
 
 FROM base
 
