@@ -8,6 +8,9 @@ jobs:
   build:
     name: Build website zip
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./app
     steps:
       - name: Checkout master
         uses: actions/checkout@v3
@@ -17,10 +20,9 @@ jobs:
       - name: Install dependencies
         uses: php-actions/composer@v4
         with:
-          composer_version: 1
+          #composer_version: 1
           php_version: 8.0
-          #ssh_key: ${{ secrets.SSH_KEY }}
-          #ssh_key_pub: ${{ secrets.SSH_KEY_PUB }}
+          working_dir: app
 
       # TODO: rename from warmup to build, it's no longer a warmup now.
       - name: Run warmup script
