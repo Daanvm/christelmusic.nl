@@ -22,10 +22,12 @@ final class WarmupCommand extends Command
             $this->output->write("  ");
 
             foreach ($project->getReleaseItems() as $releaseItem) {
+                $this->output->writeln("  > {$releaseItem->getTitle()}");
+
                 foreach ($releaseItem->getSheetMusics() as $sheetMusic) {
+                    $this->output->writeln("    ! {$sheetMusic->pdfFilename}");
                     $sheetMusic->getBase64encodedPngData();
                     $sheetMusic->getNumberOfPages();
-                    $this->output->write(".");
                 }
             }
 
