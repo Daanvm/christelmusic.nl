@@ -25,7 +25,7 @@ final class WarmupCommand extends Command
                 $this->output->writeln("  > {$releaseItem->getTitle()}");
 
                 foreach ($releaseItem->getSheetMusics() as $sheetMusic) {
-                    $this->output->writeln("    ! {$sheetMusic->pdfFilename}");
+                    $this->output->writeln("    ! {$sheetMusic->getPdfPath()}");
                     $sheetMusic->getBase64encodedPngData();
                     $sheetMusic->getNumberOfPages();
                 }
