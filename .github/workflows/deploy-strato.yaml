@@ -15,13 +15,12 @@ jobs:
       - name: Checkout master
         uses: actions/checkout@v3
 
-      # TODO: maybe install imagick
-
       - name: Install dependencies
-        uses: php-actions/composer@v4
+        uses: php-actions/composer@v6
         with:
-          #composer_version: 1
-          php_version: 8.0
+          php_version: "8.1"
+          php_extensions: pcntl imagick
+          version: latest
           working_dir: app
 
       # TODO: rename from warmup to build, it's no longer a warmup now.
