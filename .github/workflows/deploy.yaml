@@ -55,7 +55,7 @@ jobs:
             echo "MAIL_ORDERS_TO=${{ secrets.MAIL_ORDERS_TO }}" >> ./new-release/.env
           
             rm -rf ./prev-release
-            mv ./public ./prev-release
-            mv ./new-release ./public
+            mv ./app ./prev-release
+            mv ./new-release ./app
             rm -rf ./new-release
           EOF
