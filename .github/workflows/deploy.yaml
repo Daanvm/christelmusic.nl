@@ -2,69 +2,60 @@ on:
   push:
     branches:
       - master
+      - deploy-strato
 
 jobs:
   build:
-    name: Build Docker images
+    name: Build website .tar.gz
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout master
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
+      - name: Build .tar.gz file
+        run: |
+          docker build --tag local-img/zipper --target zipper .
+          docker create --name zipper local-img/zipper
+          docker cp zipper:/build.tar.gz ./build.tar.gz
+          docker rm -f zipper
+        shell: bash
 
-      - name: Login to DockerHub
-        uses: docker/login-action@v2
+      - uses: actions/upload-artifact@v4
         with:
-          username: daanvm
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          name: build-tar-gz
+          path: ./build.tar.gz
 
-      - name: Build and push christelmusic.nl-nginx
-        id: docker_build_christelmusic_nl_nginx
-        uses: docker/build-push-action@v3
-        with:
-          context: .
-          file: ./Dockerfile-nginx
-          push: true
-          tags: daanvm/christelmusic.nl-nginx:latest
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
-
-      - name: Build and push christelmusic.nl-php
-        id: docker_build_christelmusic_nl_php
-        uses: docker/build-push-action@v3
-        with:
-          context: .
-          file: ./Dockerfile-php
-          push: true
-          tags: daanvm/christelmusic.nl-php:latest
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
-
-  deploy-kubernetes:
-    name: Create Kubernetes resources
+  deploy:
+    name: Deploy website to Strato
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout master
-        uses: actions/checkout@v3
-
-      - name: Install doctl
-        uses: digitalocean/action-doctl@v2
+      - uses: actions/download-artifact@v4
         with:
-          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+          name: build-tar-gz
 
-      - name: Save DigitalOcean kubeconfig with short-lived credentials
-        run: doctl kubernetes cluster kubeconfig save --expiry-seconds 600 k8s-daanvm
-
-      - name: Create kubernetes resources
+      - name: Apt install sshpass
         run: |
-          kubectl apply -f ./christelmusic.nl.yaml
+          sudo apt-get update
+          sudo apt-get -y install sshpass
 
-      - name: Deploy new latest version of docker image
+      - name: Upload to Strato
+        env:
+          SSHPASS: ${{ secrets.STRATO_SSH_PASSWORD }}
         run: |
-          kubectl create secret generic ifttt --save-config --dry-run=client --from-literal='key=${{ secrets.IFTTT_KEY }}' -o yaml | kubectl apply -f -
-          kubectl create secret generic mail-orders-to --save-config --dry-run=client --from-literal='key=${{ secrets.MAIL_ORDERS_TO }}' -o yaml | kubectl apply -f -
-          kubectl rollout restart deployment christelmusic-nl
-          kubectl rollout restart deployment christelmusic-nl-php
+          sshpass -e scp -oStrictHostKeyChecking=no ./build.tar.gz ${{ secrets.STRATO_SSH_USERNAME }}@ssh.strato.com:build.tar.gz
+          sshpass -e ssh -oStrictHostKeyChecking=no ${{ secrets.STRATO_SSH_USERNAME }}@ssh.strato.com << EOF
+            rm -rf ./new-release
+            mkdir new-release
+            cd new-release
+            tar -xzvf ../build.tar.gz
+            cd ..
+            rm -f ./build.tar.gz
+          
+            echo "IFTTT_KEY=${{ secrets.IFTTT_KEY }}" > ./new-release/.env
+            echo "MAIL_ORDERS_TO=${{ secrets.MAIL_ORDERS_TO }}" >> ./new-release/.env
+          
+            rm -rf ./prev-release
+            mv ./app ./prev-release
+            mv ./new-release ./app
+            rm -rf ./new-release
+          EOF

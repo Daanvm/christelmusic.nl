@@ -1,33 +1,26 @@
 ---
 version: '3.9'
 services:
-  christelmusic-nl-nginx:
+  christelmusic-nl:
     build:
-      dockerfile: Dockerfile-nginx
-    restart: unless-stopped
-    volumes:
-      - ./app/public:/usr/share/nginx/html/:delegated
-    ports:
-      - '8081:80'
-
-  christelmusic-nl-php:
-    build:
-      dockerfile: Dockerfile-php
+      dockerfile: Dockerfile
     restart: unless-stopped
     env_file:
       - .env.local
     volumes:
-      - ./app:/usr/src/christelmusic.nl/:delegated
+      - ./app:/var/www/html:delegated
+    ports:
+      - '8081:80'
 
   composer-build:
     build:
-      dockerfile: Dockerfile-php
+      dockerfile: Dockerfile
       target: builder
     volumes:
-      - ./app:/usr/src/build/:delegated
+      - ./app:/var/www/html:delegated
     command:
       - /bin/sh
       - -c
       - |
         composer install
-        /usr/src/build/scripts/christelmusic warmup
+        /var/www/html/scripts/christelmusic warmup
