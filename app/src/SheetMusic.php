@@ -56,6 +56,10 @@ class SheetMusic
 
     public function getBase64encodedPngData(): string
     {
+        if (!is_readable($this->getPdfPath())) {
+            throw new \RuntimeException("File {$this->getPdfPath()} is not readable");
+        }
+
         $pngPath = self::TEMP_DIR . basename($this->pdfFilename, '.pdf') . '.png';
 
         if (!file_exists($pngPath)) {

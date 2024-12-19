@@ -23,6 +23,13 @@ RUN sed -i '/disable ghostscript format types/,+6d' /etc/ImageMagick-6/policy.xm
 COPY .env.example .env
 
 # Create cache
+# DEBUG:
+RUN ls -lah /var/www/html/src/../public/assets/sheetmusic/landslide/Butterflies.pdf
+RUN ls -lah /var/www/html/public/assets/sheetmusic/landslide/Butterflies.pdf
+RUN ls -lah /var/www/html/public/assets/sheetmusic/landslide
+RUN ls -lah /var/www/html/public/assets/sheetmusic
+RUN ls -lah /var/www/html/public/assets
+
 RUN /var/www/html/scripts/christelmusic warmup
 
 FROM builder as zipper
