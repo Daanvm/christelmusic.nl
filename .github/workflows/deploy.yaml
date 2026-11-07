@@ -8,7 +8,7 @@ jobs:
     name: Build website .tar.gz
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Build .tar.gz file
         run: |
@@ -18,7 +18,7 @@ jobs:
           docker rm -f zipper
         shell: bash
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: build-tar-gz
           path: ./build.tar.gz
@@ -28,7 +28,7 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v8
         with:
           name: build-tar-gz
 
