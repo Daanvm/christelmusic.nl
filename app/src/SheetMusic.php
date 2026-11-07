@@ -2,6 +2,7 @@
 
 namespace ChristelMusic;
 
+use Spatie\PdfToImage\Enums\OutputFormat;
 use Spatie\PdfToImage\Pdf;
 
 class SheetMusic
@@ -63,7 +64,10 @@ class SheetMusic
         $pngPath = self::TEMP_DIR . basename($this->pdfFilename, '.pdf') . '.png';
 
         if (!file_exists($pngPath)) {
-            $this->getPdf()->selectPage(1)->save($pngPath);
+            $this->getPdf()
+                ->selectPage(1)
+                ->format(OutputFormat::Png)
+                ->save($pngPath);
         }
 
         return base64_encode(file_get_contents($pngPath));
