@@ -46,7 +46,7 @@ class SheetMusic
 
         if (!file_exists($cacheFile)) {
             $jsonData = [
-                'numberOfPages' => $this->getPdf()->getNumberOfPages(),
+                'numberOfPages' => $this->getPdf()->pageCount(),
             ];
             file_put_contents($cacheFile, json_encode($jsonData));
         }
@@ -63,7 +63,7 @@ class SheetMusic
         $pngPath = self::TEMP_DIR . basename($this->pdfFilename, '.pdf') . '.png';
 
         if (!file_exists($pngPath)) {
-            $this->getPdf()->saveImage($pngPath);
+            $this->getPdf()->selectPage(1)->save($pngPath);
         }
 
         return base64_encode(file_get_contents($pngPath));

@@ -3,7 +3,7 @@
     "homepage": "https://christelmusic.nl",
     "config": {
         "platform": {
-            "php": "8.1"
+            "php": "8.5"
         }
     },
     "autoload": {
@@ -16,14 +16,14 @@
         ]
     },
     "require": {
-        "php": "^8.1",
+        "php": "^8.5",
         "ext-curl": "*",
-        "spatie/pdf-to-image": "^2.1",
-        "webmozart/assert": "^1.10",
-        "moneyphp/money": "^3.3",
+        "spatie/pdf-to-image": "^3.5",
+        "webmozart/assert": "^2.5",
+        "moneyphp/money": "^4.9",
         "parable-php/framework": "^2.0",
         "parable-php/routing": "^1.0",
         "parable-php/console": "^1.0",
-        "vlucas/phpdotenv": "^5.6"
+        "vlucas/phpdotenv": "^5.8"
     }
 }
