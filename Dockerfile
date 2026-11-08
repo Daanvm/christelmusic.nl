@@ -8,9 +8,8 @@ COPY app /var/www/html
 FROM base AS builder
 
 # Install php dependencies
-ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
-RUN chmod uga+x /usr/local/bin/install-php-extensions && sync && \
-    install-php-extensions imagick pcntl zip bcmath
+COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
+RUN install-php-extensions imagick pcntl zip bcmath
 
 # Install composer dependencies
 COPY --from=composer /usr/bin/composer /usr/bin/composer
@@ -20,7 +19,7 @@ RUN composer install
 ADD .env.example .env
 
 # Create cache
-RUN /var/www/html/scripts/christelmusic warmup
+RUN /var/www/html/scripts/christelmusic warmup && ls -lah /var/www/html/cache/sheetmusic
 
 FROM builder AS zipper
 
