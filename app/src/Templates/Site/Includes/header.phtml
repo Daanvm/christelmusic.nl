@@ -2,14 +2,14 @@
 
 /** @var Template $this */
 
-use ChristelMusic\Releases\Landslide;
+use ChristelMusic\Releases\IntoTheLuminous;
 use ChristelMusic\Releases\ReleaseProject;
 use Parable\Framework\Http\Template;
 
 $pageName = $this->data->get('viewData.pageName');
 
 /** @var ReleaseProject $headerProject */
-$headerProject = $this->data->get('viewData.releaseProject') ?? new Landslide();
+$headerProject = $this->data->get('viewData.releaseProject') ?? new IntoTheLuminous();
 ?>
 
 <!doctype html>
@@ -29,9 +29,6 @@ $headerProject = $this->data->get('viewData.releaseProject') ?? new Landslide();
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
-    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
-    <meta name="msapplication-TileColor" content="#da532c">
-    <meta name="theme-color" content="#ffffff">
 
     <title>Christel Music<?php if(isset($pageName)) { echo ' - ' . $pageName; } ?></title>
 </head>

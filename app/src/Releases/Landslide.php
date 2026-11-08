@@ -18,8 +18,8 @@ class Landslide implements ReleaseProject
     public function getIntroTextAsHtml(): string
     {
         return <<<HTML
-            <p>'Landslide' is Christel's second album. "I enthusiastically started writing new compositions for a new
-            album. But I soon found myself in a difficult phase. Music is based on emotions and experiences and is
+            <p><em>'Landslide'</em> is Christel's second album. "I enthusiastically started writing new compositions for
+            a new album. But I soon found myself in a difficult phase. Music is based on emotions and experiences and is
             always personal, so putting yourself out there feels very vulnerable. I felt like I wasn't worth doing this,
             that I should give up. But at the same time, giving up didn't feel right either. When I want to clear my
             mind I always take a walk in the woods near my house. There I like to listen to some music and admire the

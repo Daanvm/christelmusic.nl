@@ -19,8 +19,8 @@ final class OnlyTheYoung implements ReleaseProject
     public function getIntroTextAsHtml(): string
     {
         return <<<HTML
-            <p>'Only the Young' is Christel's latest release. "This is an ode to my favorite musician Brandon Flowers and his
-            song 'Only the Young'."</p>
+            <p><em>'Only the Young'</em> is Christel's latest release. "This is an ode to my favorite musician Brandon
+            Flowers and his song 'Only the Young'."</p>
             HTML;
     }
 
@@ -32,7 +32,7 @@ final class OnlyTheYoung implements ReleaseProject
     public function getHeaderImageUrl(): LocalUrl
     {
         // I don't have a header image for Only the Young yet.
-        return new LocalUrl('/assets/images/header_landslide.jpg');
+        return new LocalUrl('/assets/images/header_into_the_luminous.jpg');
     }
 
     public function getProjectImageUrl(): LocalUrl

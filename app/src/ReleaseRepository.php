@@ -2,6 +2,7 @@
 
 namespace ChristelMusic;
 
+use ChristelMusic\Releases\IntoTheLuminous;
 use ChristelMusic\Releases\Landslide;
 use ChristelMusic\Releases\OnlyTheYoung;
 use ChristelMusic\Releases\ReleaseItem;
@@ -17,6 +18,7 @@ final class ReleaseRepository
     public function getAllProjects(): array
     {
         return [
+            new IntoTheLuminous(),
             new OnlyTheYoung(),
             new Landslide(),
             new Watershed(),

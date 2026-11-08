@@ -23,6 +23,9 @@ body {
 .btn-primary.btn-landslide {
     background-image: url('/assets/images/btn-background-landslide.jpg');
 }
+.btn-primary.btn-intotheluminous {
+    background-image: url('/assets/images/btn-background-landslide.jpg'); /* TODO */
+}
 
 header {
     border: 5px solid #fff;
@@ -51,7 +54,7 @@ footer {
 
 .page-background {
     z-index: -1;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, .2)), url('/assets/images/landslide.jpg');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, .2)), url('/assets/images/into_the_luminous.jpg');
     background-size: cover;
     filter: blur(50px);
     transform: scale(1.1);
