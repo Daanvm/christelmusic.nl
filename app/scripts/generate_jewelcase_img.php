@@ -3,7 +3,7 @@
 require_once dirname(__FILE__).'/../vendor/autoload.php';
 
 $jewelcaseImg = new imagick(dirname(__FILE__) . "/../public/assets/images/jewelcase_watershed.jpg");
-$albumImg = new imagick(dirname(__FILE__) . "/../public/assets/images/landslide.jpg");
+$albumImg = new imagick(dirname(__FILE__) . "/../public/assets/images/into_the_luminous.jpg");
 
 //$albumImg->setimagebackgroundcolor("#fad888");
 $albumImg->setImageVirtualPixelMethod(Imagick::VIRTUALPIXELMETHOD_TRANSPARENT);

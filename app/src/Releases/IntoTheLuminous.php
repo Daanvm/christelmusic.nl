@@ -6,6 +6,7 @@ use ChristelMusic\LocalUrl;
 use ChristelMusic\SheetMusic;
 use DateTimeImmutable;
 use DateTimeZone;
+use Money\Money;
 
 class IntoTheLuminous implements ReleaseProject
 {
@@ -93,6 +94,112 @@ class IntoTheLuminous implements ReleaseProject
                 public function getSheetMusics(): array
                 {
                     return [];
+                }
+            },
+            new class implements ReleaseItemSingle {
+                public function getTitle(): string
+                {
+                    return "Dreams of the Rose Garden";
+                }
+
+                public function getReleaseDate(): DateTimeImmutable
+                {
+                    return new DateTimeImmutable("2026-12-04 00:00:00", new DateTimeZone("Europe/Amsterdam"));
+                }
+
+                public function getImageUrl(): LocalUrl
+                {
+                    return new LocalUrl("/assets/images/dreams_of_the_rose_garden.jpg");
+                }
+
+                public function getPreSaveLink(): ?string
+                {
+                    return 'https://ditto.fm/dreams-of-the-rose-garden';
+                }
+
+                public function getStreamingInformation(): ReleaseStreamingInformation
+                {
+                    return new ReleaseStreamingInformation(
+                        'https://open.spotify.com/artist/29x4lHXIQ1GiDMf6N4RofZ', # TODO - is now linking to the artist page
+                        null,
+                        null,
+                        null,
+                        null,
+                    );
+                }
+
+                /**
+                 * @return SheetMusic[]
+                 */
+                public function getSheetMusics(): array
+                {
+                    return [];
+                }
+            },
+            new class implements ReleaseItemAlbum {
+                public function getTitle(): string
+                {
+                    return "Into the Luminous";
+                }
+
+                public function getReleaseDate(): DateTimeImmutable
+                {
+                    return new DateTimeImmutable("2027-01-08 00:00:00", new DateTimeZone("Europe/Amsterdam"));
+                }
+
+                public function getImageUrl(): LocalUrl
+                {
+                    return new LocalUrl("/assets/images/jewelcase_into_the_luminous.jpg");
+                }
+
+                public function getTracks(): array
+                {
+                    return [
+                        'Dawn of Life',
+                        'A Summer Ago',
+                        'Alluring Deception',
+                        'Beneath the Surface',
+                        'Dreams of the Rose Garden',
+                        'A Brighter Future',
+                        'Havoc Within',
+                        'This Moment Together',
+                        'Unfold',
+                        'Resonance',
+                    ];
+                }
+
+                public function getPreSaveLink(): ?string
+                {
+                    return 'https://ditto.fm/into-the-luminous';
+                }
+
+                public function getStreamingInformation(): ReleaseStreamingInformation
+                {
+                    return new ReleaseStreamingInformation(
+                        'https://open.spotify.com/artist/29x4lHXIQ1GiDMf6N4RofZ', // TODO - is now linking to the artist page
+                        null,
+                        null,
+                        null,
+                        null,
+                    );
+                }
+
+                /**
+                 * @return SheetMusic[]
+                 */
+                public function getSheetMusics(): array
+                {
+                    return [];
+                }
+
+                public function getOrderUrl(): LocalUrl
+                {
+                    return new LocalUrl("/into_the_luminous_order"); // TODO - does not exist yet
+                }
+
+                public function getOrderPrice(): Money
+                {
+                    return Money::EUR(1000);
                 }
             },
         ];
